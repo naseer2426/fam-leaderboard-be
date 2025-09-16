@@ -8,8 +8,7 @@ build:
 	go build -o $(BIN) .
 
 run:
-	go run ./main.go
-
+	./bin/fam-leaderboard-be
 clean:
 	rm -rf bin
 
