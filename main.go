@@ -23,6 +23,7 @@ func main() {
 
 	router := gin.Default()
 	router.GET("/", api.HelloWorld)
+	router.GET("/scores", api.GetScores)
 	router.POST("/scores", api.CreateScore)
 	router.PUT("/scores/increase_score", api.IncreaseScore)
 	router.PUT("/scores/decrease_score", api.DecreaseScore)
