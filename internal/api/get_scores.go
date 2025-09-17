@@ -21,6 +21,7 @@ func GetScores(c *gin.Context) {
 
 	var scores []db.Scoreboard
 	result := database.Where("game_type = ?", gameType).
+		Order("id").
 		Find(&scores)
 
 	if result.Error != nil {
