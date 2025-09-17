@@ -8,9 +8,9 @@ import (
 )
 
 type setScoreRequest struct {
-	TeamName string `json:"teamName"`
-	GameType string `json:"gameType"`
-	Score    int    `json:"score"`
+	TeamName  string `json:"teamName"`
+	GameType  string `json:"gameType"`
+	TeamScore int    `json:"teamScore"`
 }
 
 // SetScore handles PUT /scores/set_score to set a team's score to a specific value.
@@ -29,7 +29,7 @@ func SetScore(c *gin.Context) {
 
 	result := database.Model(&db.Scoreboard{}).
 		Where("team_name = ? AND game_type = ?", req.TeamName, req.GameType).
-		Update("team_score", req.Score)
+		Update("team_score", req.TeamScore)
 
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update score"})
