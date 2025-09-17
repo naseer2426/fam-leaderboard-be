@@ -27,6 +27,7 @@ func main() {
 	router.POST("/scores", api.CreateScore)
 	router.PUT("/scores/increase_score", api.IncreaseScore)
 	router.PUT("/scores/decrease_score", api.DecreaseScore)
+	router.PUT("/scores/set_score", api.SetScore)
 
 	if err := router.Run(":8080"); err != nil {
 		log.Fatalf("failed to start server: %v", err)
