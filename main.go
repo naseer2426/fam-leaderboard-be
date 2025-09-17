@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/naseer2426/fam-leaderboard-be/internal/api"
@@ -22,6 +23,13 @@ func main() {
 	db.AutoMigrate()
 
 	router := gin.Default()
+	// Allow CORS for all origins
+	router.Use(cors.New(cors.Config{
+		AllowAllOrigins: true,
+		AllowMethods:    []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:    []string{"Origin", "Content-Length", "Content-Type", "Authorization", "Accept", "X-Requested-With"},
+		ExposeHeaders:   []string{"Content-Length"},
+	}))
 	router.GET("/", api.HelloWorld)
 	router.GET("/scores", api.GetScores)
 	router.POST("/scores", api.CreateScore)
